@@ -6,8 +6,10 @@ extends CharacterBody2D
 
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = animation_tree.get("parameters/playback")
+@onready var interact_ui = $InteractUi
 
 func _ready() -> void:
+	Global.set_player_reference(self)
 	update_animation_parameters(starting_direction)
 
 func _physics_process(delta: float):

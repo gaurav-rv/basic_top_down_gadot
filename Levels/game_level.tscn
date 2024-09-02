@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://df8on5aalb3ec"]
+[gd_scene load_steps=24 format=3 uid="uid://df8on5aalb3ec"]
 
 [ext_resource type="PackedScene" uid="uid://b1tqqwuc54nvj" path="res://Characters/main_player.tscn" id="1_m4hnk"]
 [ext_resource type="Texture2D" uid="uid://hae5rr3c0u02" path="res://Art/Sprout Lands - Sprites - Basic pack/Tilesets/Grass.png" id="2_55fvv"]
+[ext_resource type="Script" path="res://Levels/daynightcycle.gd" id="2_r1v7m"]
 [ext_resource type="Texture2D" uid="uid://6cxvqtna62v4" path="res://Art/Sprout Lands - Sprites - Basic pack/Tilesets/Water.png" id="3_866oy"]
 [ext_resource type="Texture2D" uid="uid://c3w3hnwkucyt4" path="res://Art/Sprout Lands - Sprites - Basic pack/Tilesets/Tilled_Dirt.png" id="4_4ax62"]
 [ext_resource type="Texture2D" uid="uid://b8qwrcvjdnxat" path="res://Art/Sprout Lands - Sprites - Basic pack/Tilesets/Hills.png" id="5_vyy1i"]
@@ -9,6 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://ctthhk4kjdbjo" path="res://Art/Sprout Lands - Sprites - Basic pack/Tilesets/Doors.png" id="7_e12kd"]
 [ext_resource type="Texture2D" uid="uid://bdiy4xy4fbmr7" path="res://Art/Sprout Lands - Sprites - Basic pack/Objects/Basic_Grass_Biom_things.png" id="8_g4h1i"]
 [ext_resource type="Texture2D" uid="uid://bqc5pfjsgo5vt" path="res://Art/Sprout Lands - Sprites - Basic pack/Objects/TX Plant.png" id="9_c8e75"]
+[ext_resource type="PackedScene" uid="uid://d4d3qhphf3q07" path="res://Levels/inventory_item.tscn" id="11_xw2q6"]
+[ext_resource type="Texture2D" uid="uid://vw6v1fajelk5" path="res://Art/Sprout Lands - Sprites - Basic pack/Objects/Egg_item.png" id="12_jypiu"]
+
+[sub_resource type="Gradient" id="Gradient_2vxtb"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bfnch"]
+gradient = SubResource("Gradient_2vxtb")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o43b3"]
 texture = ExtResource("2_55fvv")
@@ -590,6 +598,12 @@ position = Vector2(120, 94)
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="MainPlayer"]
 remote_path = NodePath("../../Camera2D")
 
+[node name="dayandnightcycle" type="CanvasModulate" parent="."]
+position = Vector2(120, 94)
+color = Color(0.141176, 0.337255, 1, 1)
+script = ExtResource("2_r1v7m")
+gradient = SubResource("GradientTexture1D_bfnch")
+
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(22, -31)
 tile_set = SubResource("TileSet_regq1")
@@ -606,3 +620,11 @@ layer_2/tile_data = PackedInt32Array(-589840, 3, 0, -524304, 3, 1, -589839, 6553
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(120, 94)
+
+[node name="Inventory_Item" parent="." instance=ExtResource("11_xw2q6")]
+position = Vector2(68, 61)
+item_type = "buff"
+item_name = "egg"
+item_texture = ExtResource("12_jypiu")
+item_effect = "nothing"
+quantity = 2
